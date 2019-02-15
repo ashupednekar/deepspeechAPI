@@ -25,7 +25,7 @@ SECRET_KEY = 'v(c6o$&z%tt!hub7ll-pjpq*a2f)gkx1ap0(#55*vn%g$e=kre'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sensei.bankbuddy.ai']
+ALLOWED_HOSTS = ['sensei.bankbuddy.ai', '127.0.0.1']
 
 
 # Application definition
