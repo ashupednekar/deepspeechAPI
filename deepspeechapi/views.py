@@ -12,7 +12,7 @@ from .serializers import FileSerializer
 import scipy.io.wavfile as wav
 #from deepspeechapi import ds
 import json, os, time
-from deepspeechapi import decoder, parser, model, device, decode_results
+from deepspeechapi.transcription import decoder, parser, model, device, decode_results
 
 def transcribe(audio_path, parser, model, decoder, device):
     spect = parser.parse_audio(audio_path).contiguous()
