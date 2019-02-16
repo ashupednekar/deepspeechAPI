@@ -10,7 +10,7 @@ from django.core import serializers
 from django.conf import settings
 from .serializers import FileSerializer
 import scipy.io.wavfile as wav
-from deepspeechapi import ds
+#from deepspeechapi import ds
 import json, os, time
 
 class FileView(APIView):
