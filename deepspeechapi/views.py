@@ -36,12 +36,12 @@ class FileView(APIView):
             os.system('ffmpeg -i '+aud+' -acodec pcm_s16le -ac 1 -ar 16000 '+ aud.split('.')[0]+'.wav -y')
             #fs, audio = wav.read(aud.split('.')[0]+'.wav')
             #processed_data = ds.stt(audio, fs)
-            os.chdir('/home/ashu/Documents/bbuddy/dstorch/deepspeech.pytorch')
-            transcript = json.loads(os.popen('python transcribe.py --model-path models/deepspeech_final.pth --audio-path ' + aud.split('.')[0] + '.wav' + ' --decoder beam --lm-path data/custom/text.binary ').read())['output'][0]['transcription']
-            os.chdir('/home/ashu/Documents/bbuddy/deepspeechAPI/deepspeechapi/')
-            decoded_output, decoded_offsets = transcribe(aud.split('.')[0]+'.wav', parser, model, decoder, device)
-            res = decode_results(model, decoded_output, decoded_offsets)
-            res["transcript"] = transcript
+            #os.chdir('/home/ashu/Documents/bbuddy/dstorch/deepspeech.pytorch')
+            #transcript = json.loads(os.popen('python transcribe.py --model-path models/deepspeech_final.pth --audio-path ' + aud.split('.')[0] + '.wav' + ' --decoder beam --lm-path data/custom/text.binary ').read())['output'][0]['transcription']
+            #os.chdir('/home/ashu/Documents/bbuddy/deepspeechAPI/deepspeechapi/')
+            #decoded_output, decoded_offsets = transcribe(aud.split('.')[0]+'.wav', parser, model, decoder, device)
+            #res = decode_results(model, decoded_output, decoded_offsets)
+            #res["transcript"] = transcript
             print(time.time() - first)
             return Response(res, status=status.HTTP_201_CREATED)
         else:
