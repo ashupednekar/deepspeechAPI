@@ -1,4 +1,4 @@
-import argparse
+#import argparse
 import warnings
 
 from deepspeechapi.opts import add_decoder_args, add_inference_args
@@ -46,21 +46,22 @@ def decode_results(model, decoded_output, decoded_offsets):
 
 
 
-parser = argparse.ArgumentParser(description='DeepSpeech transcription')
-parser = add_inference_args(parser)
-parser.add_argument('--audio-path', default='audio.wav',
-                    help='Audio file to predict on')
-parser.add_argument('--offsets', dest='offsets', action='store_true', help='Returns time offset information')
-parser = add_decoder_args(parser)
-args = parser.parse_args()
-device = torch.device("cuda" if args.cuda else "cpu")
-model = load_model(device, args.model_path, args.cuda)
+#parser = argparse.ArgumentParser(description='DeepSpeech transcription')
+#parser = add_inference_args(parser)
+#parser.add_argument('--audio-path', default='audio.wav', help='Audio file to predict on')
+#parser.add_argument('--offsets', dest='offsets', action='store_true', help='Returns time offset information')
+#parser = add_decoder_args(parser)
+#args = parser.parse_args()
+model_path = 'assets/50_epochs.pth'
+lm_path = 'assets/text.binary'
+device = torch.device("cuda")# if args.cuda else "cpu")
+model = load_model(device, model_path, cuda)
 
 from deepspeechapi.decoder import BeamCTCDecoder
 
-decoder = BeamCTCDecoder(model.labels, lm_path=args.lm_path, alpha=args.alpha, beta=args.beta,
-                         cutoff_top_n=args.cutoff_top_n, cutoff_prob=args.cutoff_prob,
-                         beam_width=args.beam_width, num_processes=args.lm_workers)
+decoder = BeamCTCDecoder(model.labels, lm_path=lm_path)#, alpha=args.alpha, beta=args.beta,
+#                         cutoff_top_n=args.cutoff_top_n, cutoff_prob=args.cutoff_prob,
+#                         beam_width=args.beam_width, num_processes=args.lm_workers)
 #decoder = GreedyDecoder(model.labels, blank_index=model.labels.index('_'))
 
 parser = SpectrogramParser(model.audio_conf, normalize=True)
