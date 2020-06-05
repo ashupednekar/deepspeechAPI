@@ -5,7 +5,7 @@ chardet==3.0.4
 ctcdecode==0.4
 decorator==4.3.2
 deepspeech==0.4.1
-Django==2.1.5
+Django==2.2.13
 django-cors-headers==2.4.0
 djangorestframework==3.9.1
 hupper==1.4.2
